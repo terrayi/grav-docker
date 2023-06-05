@@ -1,7 +1,7 @@
 ARG ALPINE_VERSION=3.18.0
 
 # Build stage
-FROM alpine:${ALPINE_VERSION} AS builder
+FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION} AS builder
 LABEL stage=builder
 ARG GIT_REPO
 
@@ -20,11 +20,10 @@ COPY ./etc/php82/php-fpm.d/www.conf ./files/etc/php82/php-fpm.d/www.conf
 COPY ./entrypoint.sh ./files/usr/bin
 
 # Final image
-FROM alpine:${ALPINE_VERSION}
+FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION}
 COPY --from=builder files/ /
 RUN mkdir /run/php \
-	&& chown -R \
-	  nobody:nobody \
+	&& chown -R nobody:nobody \
 	  /home/www/assets \
 	  /home/www/backup \
 	  /home/www/cache \
