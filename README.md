@@ -1,5 +1,5 @@
 # Grav Docker
-Dockerfile to createa a lightweight environment to host Grav site
+Dockerfile to create a lightweight environment to host Grav site
 
 ## Setup
 
@@ -15,3 +15,16 @@ Dockerfile to createa a lightweight environment to host Grav site
 
 ## Instruction
 You need to supply GIT_REPO agrument that points to git repository contains the contents of user directory.
+
+### for same architecture as host
+
+```shell
+docker build --no-cache --build-arg GIT_REPO=[your grav user git repo] .
+```
+
+### cross platform build example for Aarch64
+
+```shell
+docker buildx build --no-cache --platform linux/aarch64 --build-arg GIT_REPO=[your grav user git repo] .
+```
+
