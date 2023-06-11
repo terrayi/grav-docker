@@ -20,8 +20,10 @@ COPY ./etc/php82/php-fpm.d/www.conf ./files/etc/php82/php-fpm.d/www.conf
 COPY ./entrypoint.sh ./files/usr/bin
 
 # Final image
-FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION}
+ARG TARGETPLATFORM
+FROM --platform=$TARGETPLATFORM alpine:${ALPINE_VERSION}
 COPY --from=builder ./files/ /
+
 RUN mkdir /run/php \
 	&& chown -R nobody:nobody \
 	  /home/www/assets \
