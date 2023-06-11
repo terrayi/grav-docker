@@ -22,9 +22,9 @@ You need to supply GIT_REPO agrument that points to git repository contains the 
 docker build --no-cache --build-arg GIT_REPO=[your grav user git repo] .
 ```
 
-### cross platform build example for Aarch64
+### cross platform build example for Arm64v8
 
 ```shell
-docker buildx build --no-cache --platform linux/aarch64 --build-arg GIT_REPO=[your grav user git repo] .
+docker buildx build --no-cache --platform linux/arm64/v8 --build-arg GIT_REPO=[your grav user git repo] .
 ```
 
